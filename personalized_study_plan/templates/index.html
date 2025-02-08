@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Study Plan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Personalized Study Plan Generator</h1>
+        <input type="number" id="study_hours" placeholder="Enter study hours">
+        <button onclick="generatePlan()">Generate Plan</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function generatePlan() {
+            let hours = document.getElementById("study_hours").value;
+            fetch("/generate_plan", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ "study_hours": parseInt(hours) })
+            })
+            .then(response => response.json())
+            .then(data => {
+                let output = "<h3>Your Study Plan:</h3>";
+                data.study_plan.forEach(plan => {
+                    output += `<p>Subject: <b>${plan.subject}</b> - Topic: <b>${plan.topic}</b></p>`;
+                });
+                document.getElementById("result").innerHTML = output;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>
