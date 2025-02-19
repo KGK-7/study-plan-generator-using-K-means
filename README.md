@@ -1,4 +1,4 @@
-# 📚 Personalized Study Plan Generator
+# 📚 Simple Personalized Study Plan Generator
 
 ## 🔹 Project Overview
 The **Personalized Study Plan Generator** is an AI-powered web application that creates a **customized study schedule** based on the number of hours a user wants to study. It dynamically suggests **subjects and topics** using a simple **machine learning algorithm** to ensure an optimized study experience.
